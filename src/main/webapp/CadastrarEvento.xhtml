@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet library="css" name="styles.css" />
+	<title>Eventos</title>
+
+	<script type="text/javascript">
+		PrimeFaces.locales['pt'] = {
+			closeText : 'Fechar',
+			prevText : 'Anterior',
+			nextText : 'Próximo',
+			currentText : 'Começo',
+			monthNames : [ 'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio',
+					'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro',
+					'Novembro', 'Dezembro' ],
+			monthNamesShort : [ 'Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun',
+					'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez' ],
+			dayNames : [ 'Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta',
+					'Sexta', 'Sábado' ],
+			dayNamesShort : [ 'Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb' ],
+			dayNamesMin : [ 'D', 'S', 'T', 'Q', 'Q', 'S', 'S' ],
+			weekHeader : 'Semana',
+			firstDay : 1,
+			isRTL : false,
+			showMonthAfterYear : false,
+			yearSuffix : '',
+			timeOnlyTitle : 'Só Horas',
+			timeText : 'Tempo',
+			hourText : 'Hora',
+			minuteText : 'Minuto',
+			secondText : 'Segundo',
+			currentText : 'Data Atual',
+			ampm : false,
+			month : 'Mês',
+			week : 'Semana',
+			day : 'Dia',
+			allDayText : 'Todo Dia'
+		};
+	</script>
+</h:head>
+<h:body>
+
+	<div id="header" class="center">
+		<h:graphicImage id="logo" library="images" name="placa-eventos.png"></h:graphicImage>
+	</div>
+
+	<h:form>
+		<p:menubar>
+			<p:submenu label="Eventos">
+				<p:menuitem value="Novo" url="/CadastrarEvento.xhtml" />
+				<p:menuitem value="Editar" />
+				<p:separator />
+				<p:menuitem value="Lista" />
+			</p:submenu>
+		</p:menubar>
+	</h:form>
+
+	<div class="formulario center">
+		<h:form id="form">
+
+			<h1>Cadastre seu Evento</h1>
+
+			<p:panelGrid columns="1">
+
+				<p:messages />
+
+				<p:outputLabel value="Nome do evento:" for="nome" />
+				<p:inputText id="nome" value="#{cadastroEventoBean.evento.nome}"
+					required="true" maxlength="30" />
+
+				<p:outputLabel value="Nome da Organização:" for="organizacao" />
+				<p:inputText id="organizacao"
+					value="#{cadastroEventoBean.evento.organizacao}" required="true"
+					maxlength="30" />
+
+				<p:outputLabel value="Local:" for="local" />
+				<p:inputText id="local" value="#{cadastroEventoBean.evento.local}"
+					required="true" maxlength="30" />
+
+				<p:outputLabel value="Data:" for="data" />
+				<p:calendar id="data" value="#{cadastroEventoBean.evento.data}"
+					locale="pt" navigator="true" pattern="dd/MM/yyyy" mask="99/99/9999"
+					required="true" mindate="LOCAL_DATE" type="date" />
+
+				<p:outputLabel value="Horário" for="horario" />
+				<p:inputText id="horario"
+					value="#{cadastroEventoBean.evento.horario}" type="time"
+					required="true" />
+
+				<h:panelGroup styleClass="center">
+					<p:commandButton id="btn-enviar" value="Cadastrar"
+						action="#{cadastroEventoBean.save}" update="form table"
+						icon="ui-icon-disk" iconPos="right" />
+
+					<p:commandButton id="btn" value="Listar"
+						action="#{pesquisaEventoBean.find}" update="table" process="@this" />
+				</h:panelGroup>
+			</p:panelGrid>
+		</h:form>
+	</div>
+
+	<h:panelGroup styleClass="center">
+		<p:dataTable value="#{pesquisaEventoBean.eventos}" var="e" id="table">
+			<p:column headerText="Id">
+				<h:outputText value="#{e.id}" />
+			</p:column>
+			<p:column headerText="Nome">
+				<h:outputText value="#{e.nome}" />
+			</p:column>
+			<p:column headerText="Organização">
+				<h:outputText value="#{e.organizacao}" />
+			</p:column>
+			<p:column headerText="Local">
+				<h:outputText value="#{e.local}" />
+			</p:column>
+			<p:column headerText="Data">
+				<h:outputText value="#{e.data}">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</h:outputText>
+			</p:column>
+			<p:column headerText="Horário">
+				<h:outputText value="#{e.horario}" />
+			</p:column>
+			<p:column headerText="">
+				<p:commandButton id="btn-excluir" value="Excluir"
+					action="#{pesquisaEventoBean.remove}" update="table"
+					process="@this">
+					<f:actionListener target="#{pesquisaFuncionarioBean.evento}"
+						value="#{e}" />
+				</p:commandButton>
+			</p:column>
+		</p:dataTable>
+	</h:panelGroup>
+</h:body>
+</html>
