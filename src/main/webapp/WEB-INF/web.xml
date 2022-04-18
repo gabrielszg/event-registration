@@ -4,7 +4,7 @@
 <display-name>Teste</display-name>
 
 	<welcome-file-list>
-		<welcome-file>CadastrarFuncionario.xhtml</welcome-file>
+		<welcome-file>CadastrarEvento.xhtml</welcome-file>
 	</welcome-file-list>
 
 	<context-param>

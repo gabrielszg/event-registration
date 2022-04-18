@@ -55,7 +55,7 @@
 				<p:menuitem value="Novo" url="/CadastrarEvento.xhtml" />
 				<p:menuitem value="Editar" />
 				<p:separator />
-				<p:menuitem value="Lista" />
+				<p:menuitem value="Lista" url="/ListaEventos.xhtml"/>
 			</p:submenu>
 		</p:menubar>
 	</h:form>
@@ -94,47 +94,14 @@
 
 				<h:panelGroup styleClass="center">
 					<p:commandButton id="btn-enviar" value="Cadastrar"
-						action="#{cadastroEventoBean.save}" update="form table"
+						action="#{cadastroEventoBean.save}" update="form"
 						icon="ui-icon-disk" iconPos="right" />
 
-					<p:commandButton id="btn" value="Listar"
-						action="#{pesquisaEventoBean.find}" update="table" process="@this" />
 				</h:panelGroup>
 			</p:panelGrid>
 		</h:form>
 	</div>
 
-	<h:panelGroup styleClass="center">
-		<p:dataTable value="#{pesquisaEventoBean.eventos}" var="e" id="table">
-			<p:column headerText="Id">
-				<h:outputText value="#{e.id}" />
-			</p:column>
-			<p:column headerText="Nome">
-				<h:outputText value="#{e.nome}" />
-			</p:column>
-			<p:column headerText="Organização">
-				<h:outputText value="#{e.organizacao}" />
-			</p:column>
-			<p:column headerText="Local">
-				<h:outputText value="#{e.local}" />
-			</p:column>
-			<p:column headerText="Data">
-				<h:outputText value="#{e.data}">
-					<f:convertDateTime pattern="dd/MM/yyyy" />
-				</h:outputText>
-			</p:column>
-			<p:column headerText="Horário">
-				<h:outputText value="#{e.horario}" />
-			</p:column>
-			<p:column headerText="">
-				<p:commandButton id="btn-excluir" value="Excluir"
-					action="#{pesquisaEventoBean.remove}" update="table"
-					process="@this">
-					<f:actionListener target="#{pesquisaFuncionarioBean.evento}"
-						value="#{e}" />
-				</p:commandButton>
-			</p:column>
-		</p:dataTable>
-	</h:panelGroup>
+	
 </h:body>
 </html>

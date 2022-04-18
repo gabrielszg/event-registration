@@ -1,5 +1,6 @@
 package br.com.jsf.repository;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 
@@ -43,13 +44,13 @@ public class EventoRepository implements Serializable{
 	}
 	
 	@Transactional
-	public void delete(Evento evento) {
+	public void delete(Evento evento) throws IOException {
 		evento = findById(evento.getId());
 		manager.remove(evento);
 		manager.flush();
 	}
 
-	private Evento findById(Long id) {
+	public Evento findById(Long id) {
 		return manager.find(Evento.class, id);
 	}
 }

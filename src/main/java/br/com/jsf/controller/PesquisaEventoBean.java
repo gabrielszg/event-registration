@@ -1,5 +1,6 @@
 package br.com.jsf.controller;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 
@@ -17,7 +18,7 @@ public class PesquisaEventoBean implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
-	private Evento evento;
+	private Evento eventoSelecionado;
 	private EventoFilter filter;
 	private List<Evento> eventos;
 	
@@ -33,8 +34,15 @@ public class PesquisaEventoBean implements Serializable {
 	}
 	
 	public void remove() {
-		service.removeEvent(evento);
-		eventos.remove(evento);
+		System.out.println("PesquisaEventoBean.remove()");
+		
+		try {
+			service.removeEvent(eventoSelecionado);
+			eventos.remove(eventoSelecionado);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 	public EventoFilter getFilter() {
@@ -45,24 +53,20 @@ public class PesquisaEventoBean implements Serializable {
 		this.filter = filter;
 	}
 
-	public Evento getEvento() {
-		return evento;
+	public Evento getEventoSelecionado() {
+		return eventoSelecionado;
+	}
+
+	public void setEventoSelecionado(Evento eventoSelecionado) {
+		this.eventoSelecionado = eventoSelecionado;
 	}
 
 	public List<Evento> getEventos() {
 		return eventos;
 	}
 
-	public void setEventos(List<Evento> eventos) {
-		this.eventos = eventos;
-	}
+//	public void setEventos(List<Evento> eventos) {
+//		this.eventos = eventos;
+//	}
 
-	public EventoService getService() {
-		return service;
-	}
-
-	public void setService(EventoService service) {
-		this.service = service;
-	}
-	
 }
