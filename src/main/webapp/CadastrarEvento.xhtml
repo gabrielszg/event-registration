@@ -53,7 +53,6 @@
 		<p:menubar>
 			<p:submenu label="Eventos">
 				<p:menuitem value="Novo" url="/CadastrarEvento.xhtml" />
-				<p:menuitem value="Editar" />
 				<p:separator />
 				<p:menuitem value="Lista" url="/ListaEventos.xhtml"/>
 			</p:submenu>
@@ -63,12 +62,14 @@
 	<div class="formulario center">
 		<h:form id="form">
 
-			<h1>Cadastre seu Evento</h1>
-
 			<p:panelGrid columns="1">
 
 				<p:messages />
-
+				
+				<f:facet name="header">
+					<p:outputLabel value="#{cadastroEventoBean.newEvent ? 'Cadastrar Evento' : 'Editando Evento'}" />
+				</f:facet>
+				
 				<p:outputLabel value="Nome do evento:" for="nome" />
 				<p:inputText id="nome" value="#{cadastroEventoBean.evento.nome}"
 					required="true" maxlength="30" />
@@ -93,7 +94,7 @@
 					required="true" />
 
 				<h:panelGroup styleClass="center">
-					<p:commandButton id="btn-enviar" value="Cadastrar"
+					<p:commandButton id="btn-enviar" value="#{cadastroEventoBean.newEvent ? 'Cadastrar' : 'Atualizar'}"
 						action="#{cadastroEventoBean.save}" update="form"
 						icon="ui-icon-disk" iconPos="right" />
 

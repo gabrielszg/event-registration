@@ -12,55 +12,76 @@
 <h:body>
 
 	<div class="center">
-	<h:form id="form" style="width: 50%; text-align: center">
-	
-		<p:panelGrid columns="2" >
-			<p:outputLabel value="Nome" for="nome"/>
-			<p:inputText id="nome" value="#{pesquisaEventoBean.filter.nome}" />
-			
-			<p:outputLabel value="Local" for="local" />
-			<p:inputText id="local" value="#{pesquisaEventoBean.filter.local}" />
-			
-			<p:commandButton id="btn" value="Listar"
-						action="#{pesquisaEventoBean.find}" update="form table"
-						process="@this" />
-		</p:panelGrid>
-		
-		<h:panelGroup styleClass="center">
-			<p:dataTable value="#{pesquisaEventoBean.eventos}" var="evento"
-				id="table" emptyMessage="Não há eventos cadastrados.">
-				<p:column headerText="Id">
-					<h:outputText value="#{evento.id}" />
-				</p:column>
-				<p:column headerText="Nome">
-					<h:outputText value="#{evento.nome}" />
-				</p:column>
-				<p:column headerText="Organização">
-					<h:outputText value="#{evento.organizacao}" />
-				</p:column>
-				<p:column headerText="Local">
-					<h:outputText value="#{evento.local}" />
-				</p:column>
-				<p:column headerText="Data">
-					<h:outputText value="#{evento.data}">
-						<f:convertDateTime pattern="dd/MM/yyyy" />
-					</h:outputText>
-				</p:column>
-				<p:column headerText="Horário">
-					<h:outputText value="#{evento.horario}" />
-				</p:column>
-				<p:column headerText="Excluir" style="width: 50px">
-					<p:commandButton id="btn-excluir" icon="ui-icon-trash"
-						action="#{pesquisaEventoBean.remove}" update="form table"
-						process="@this">
-						<f:setPropertyActionListener
-							target="#{pesquisaEventoBean.eventoSelecionado}"
-							value="#{evento}" />
-					</p:commandButton>
-				</p:column>
-			</p:dataTable>
-		</h:panelGroup>
-	</h:form>
+		<h:form id="form" style="width: 50%; text-align: center">
+
+			<p:panelGrid columns="2">
+
+				<f:facet name="header">
+					<p:outputLabel value="Pesquisa de Eventos" />
+				</f:facet>
+
+				<p:messages />
+				<p:outputLabel value="Nome" for="nome" />
+				<p:inputText id="nome" value="#{pesquisaEventoBean.filter.nome}" />
+
+				<p:outputLabel value="Local" for="local" />
+				<p:inputText id="local" value="#{pesquisaEventoBean.filter.local}" />
+
+				<f:facet name="footer">
+					<p:commandButton id="btn" value="Listar"
+						action="#{pesquisaEventoBean.find}" update="@form" />
+
+					<p:button value="Voltar" outcome="/CadastrarEvento" />
+				</f:facet>
+
+			</p:panelGrid>
+
+			<br />
+			<br />
+
+			<h:panelGroup styleClass="center">
+				<p:dataTable value="#{pesquisaEventoBean.eventos}" var="evento"
+					id="table" emptyMessage="Não há eventos cadastrados.">
+					<p:column headerText="Id">
+						<h:outputText value="#{evento.id}" />
+					</p:column>
+					<p:column headerText="Nome">
+						<h:outputText value="#{evento.nome}" />
+					</p:column>
+					<p:column headerText="Organização">
+						<h:outputText value="#{evento.organizacao}" />
+					</p:column>
+					<p:column headerText="Local">
+						<h:outputText value="#{evento.local}" />
+					</p:column>
+					<p:column headerText="Data">
+						<h:outputText value="#{evento.data}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
+					</p:column>
+					<p:column headerText="Horário">
+						<h:outputText value="#{evento.horario}" />
+					</p:column>
+
+					<p:column>
+						<p:button outcome="/CadastrarEvento" icon="ui-icon-pencil"
+							title="Editar">
+							<f:param name="evento" value="#{evento.id}" />
+						</p:button>
+					</p:column>
+
+					<p:column headerText="Excluir" style="width: 50px">
+						<p:commandButton id="btn-excluir" icon="ui-icon-trash"
+							action="#{pesquisaEventoBean.remove}" update="form table"
+							process="@this">
+							<f:setPropertyActionListener
+								target="#{pesquisaEventoBean.eventoSelecionado}"
+								value="#{evento}" />
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+			</h:panelGroup>
+		</h:form>
 	</div>
 </h:body>
 </html>

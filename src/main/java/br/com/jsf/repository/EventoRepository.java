@@ -10,6 +10,7 @@ import javax.persistence.EntityManager;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
 import br.com.jsf.model.Evento;
@@ -33,11 +34,11 @@ public class EventoRepository implements Serializable{
 		Criteria criteria = session.createCriteria(Evento.class);
 		
 		if (StringUtils.isNotBlank(filter.getNome())) {
-			criteria.add(Restrictions.ilike("nome", filter.getNome()));
+			criteria.add(Restrictions.ilike("nome", filter.getNome(), MatchMode.ANYWHERE));
 		}
 		
 		if (StringUtils.isNotBlank(filter.getLocal())) {
-			criteria.add(Restrictions.ilike("local", filter.getLocal()));
+			criteria.add(Restrictions.ilike("local", filter.getLocal(), MatchMode.ANYWHERE));
 		}
 		
 		return criteria.list();

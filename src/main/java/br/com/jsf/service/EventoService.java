@@ -31,4 +31,8 @@ public class EventoService implements Serializable {
 	public void removeEvent(Evento evento) throws IOException {
 		repository.delete(evento);
 	}
+	
+	public Evento findById(Long id) {
+		return repository.findById(id);
+	}
 }
