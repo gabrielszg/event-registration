@@ -48,11 +48,15 @@ public class CadastroEventoBean implements Serializable {
 
 	public void save() {
 		System.out.println("CadastroEventoBean.save()");
-		this.evento = service.saveEvent(this.evento);
 		
-		FacesUtil.addInfoMessage("Evento Cadastrado com sucesso!");
+		if (evento.getId() == null) {
+			this.evento = service.saveEvent(this.evento);
+			FacesUtil.addInfoMessage("Evento Cadastrado com sucesso!");
+		}else {
+			this.evento = service.saveEvent(this.evento);
+			FacesUtil.addInfoMessage("Evento Atulizado com sucesso!");
+		}
 	}
-	
 	
 	public Evento getEvento() {
 		return evento;

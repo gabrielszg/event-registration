@@ -11,6 +11,7 @@ import javax.inject.Named;
 import br.com.jsf.model.Evento;
 import br.com.jsf.model.EventoFilter;
 import br.com.jsf.service.EventoService;
+import br.com.jsf.util.jsf.FacesUtil;
 
 @Named
 @ViewScoped
@@ -39,6 +40,8 @@ public class PesquisaEventoBean implements Serializable {
 		try {
 			service.removeEvent(eventoSelecionado);
 			eventos.remove(eventoSelecionado);
+			
+			FacesUtil.addInfoMessage("Evento excluído com sucesso!");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
