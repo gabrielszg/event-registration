@@ -12,9 +12,19 @@
 		<div class="formulario center">
 			<h:form id="form" style="text-align: left">
 
-				<p:panelGrid columns="1" style="width: 100%">
+				<p:ajaxStatus>
+					<f:facet name="start">
+						<h:graphicImage library="images" name="loading.gif"
+							style="width: 50px" />
+					</f:facet>
+					<f:facet name="complete">
+						<h:outputText value="" />
+					</f:facet>
+				</p:ajaxStatus>
 
-					<p:messages closable="true" />
+				<p:messages closable="true" />
+
+				<p:panelGrid columns="1" style="width: 100%">
 
 					<f:facet name="header">
 						<p:outputLabel value="Pesquisa de Eventos" />

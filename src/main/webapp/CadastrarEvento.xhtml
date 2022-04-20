@@ -37,12 +37,24 @@
 					<p:outputLabel value="Data:" for="data" />
 					<p:calendar id="data" value="#{cadastroEventoBean.evento.data}"
 						locale="pt" navigator="true" pattern="dd/MM/yyyy"
-						mask="99/99/9999" required="true" mindate="LOCAL_DATE" type="date" />
+						mask="99/99/9999" required="true" mindate="LOCAL_DATE"
+						showButtonPanel="true" />
 
 					<p:outputLabel value="Horário" for="horario" />
 					<p:inputText id="horario"
 						value="#{cadastroEventoBean.evento.horario}" type="time"
 						required="true" />
+
+					<p:outputLabel value="Tipo" for="tipo" />
+					<p:selectOneRadio id="tipo" value="Selecione" required="true">
+						<f:selectItem itemLabel="Pago" itemValue="Pago" />
+						<f:selectItem itemLabel="Gratuito" itemValue="Gratuito" />
+					</p:selectOneRadio>
+
+					<p:outputLabel value="Descrição" for="descricao" />
+					<p:inputTextarea id="descricao" rows="5" cols="30" maxlength="240" autoResize="false"
+						counter="count" counterTemplate="Restam {0} caracteres" style="width: 99%" required="true" />
+					<h:outputText id="count" />
 
 					<h:panelGroup styleClass="center">
 						<p:commandButton id="btn-enviar"

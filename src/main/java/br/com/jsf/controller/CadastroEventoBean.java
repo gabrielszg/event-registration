@@ -54,7 +54,7 @@ public class CadastroEventoBean implements Serializable {
 			FacesUtil.addInfoMessage("Evento Cadastrado com sucesso!");
 		}else {
 			this.evento = service.saveEvent(this.evento);
-			FacesUtil.addInfoMessage("Evento Atulizado com sucesso!");
+			FacesUtil.addInfoMessage("Evento " + evento.getNome() + " Atualizado com sucesso!");
 		}
 	}
 	

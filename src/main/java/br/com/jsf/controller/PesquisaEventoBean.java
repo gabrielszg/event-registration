@@ -31,6 +31,11 @@ public class PesquisaEventoBean implements Serializable {
 	}
 	
 	public void find() {
+		
+		try {
+			Thread.sleep(1000);
+		}catch (InterruptedException e) {}
+		
 		eventos = service.findEvent(filter);
 	}
 	
@@ -41,7 +46,7 @@ public class PesquisaEventoBean implements Serializable {
 			service.removeEvent(eventoSelecionado);
 			eventos.remove(eventoSelecionado);
 			
-			FacesUtil.addInfoMessage("Evento excluído com sucesso!");
+			FacesUtil.addInfoMessage("Evento " + eventoSelecionado.getNome() + " excluído com sucesso!");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

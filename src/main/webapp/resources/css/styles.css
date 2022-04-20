@@ -45,9 +45,9 @@ body {
 }
 
 #form button {
-	background: none;
-	border: 2px solid #49b675;
-	color: #49b675;
+	background: #778899;
+	border: 2px;
+	color: #000000;
 	border-radius: 50px;
 	width: 250px;
 }
