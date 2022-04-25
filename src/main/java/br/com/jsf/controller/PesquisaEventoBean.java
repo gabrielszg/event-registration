@@ -72,9 +72,4 @@ public class PesquisaEventoBean implements Serializable {
 	public List<Evento> getEventos() {
 		return eventos;
 	}
-
-//	public void setEventos(List<Evento> eventos) {
-//		this.eventos = eventos;
-//	}
-
 }

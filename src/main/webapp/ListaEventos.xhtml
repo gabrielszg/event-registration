@@ -14,7 +14,7 @@
 
 				<p:ajaxStatus>
 					<f:facet name="start">
-						<h:graphicImage library="images" name="loading.gif"
+						<p:graphicImage library="images" name="loading.gif"
 							style="width: 50px" />
 					</f:facet>
 					<f:facet name="complete">
@@ -39,11 +39,12 @@
 						style="width: 50%" />
 
 					<f:facet name="footer">
-						<p:commandButton id="btn" value="Listar"
+						<p:commandButton id="btn" value="Pesquisar"
 							action="#{pesquisaEventoBean.find}" update="@form"
-							icon="ui-icon-search" iconPos="right" />
+							icon="fa fa-search" iconPos="left" />
 
-						<p:button value="Voltar" outcome="/CadastrarEvento" />
+						<p:button value="Voltar" icon="fa fa-arrow-left"
+							outcome="/CadastrarEvento" />
 					</f:facet>
 
 				</p:panelGrid>
@@ -53,42 +54,61 @@
 
 				<h:panelGroup styleClass="center">
 					<p:dataTable value="#{pesquisaEventoBean.eventos}" var="evento"
-						id="table" emptyMessage="Não há eventos cadastrados.">
-						<p:column headerText="Id" style="width: 50px">
+						id="table" emptyMessage="Não há eventos cadastrados."
+						paginator="true" rows="10" paginatorAlwaysVisible="false" paginatorPosition="bottom">
+
+						<p:column headerText="Id" style="width: 50px; text-align: center">
 							<h:outputText value="#{evento.id}" />
 						</p:column>
 
-						<p:column headerText="Nome" style="width: 130px">
+						<p:column headerText="Nome"
+							style="width: 130px; text-align: center">
 							<h:outputText value="#{evento.nome}" />
 						</p:column>
 
-						<p:column headerText="Organização" style="width: 130px">
+						<p:column headerText="Organização"
+							style="width: 130px; text-align: center">
 							<h:outputText value="#{evento.organizacao}" />
 						</p:column>
 
-						<p:column headerText="Local" style="width: 130px">
+						<p:column headerText="Local"
+							style="width: 130px; text-align: center">
 							<h:outputText value="#{evento.local}" />
 						</p:column>
 
-						<p:column headerText="Data" style="width: 100px">
+						<p:column headerText="Data"
+							style="width: 110px; text-align: center">
 							<h:outputText value="#{evento.data}">
 								<f:convertDateTime pattern="dd/MM/yyyy" />
 							</h:outputText>
 						</p:column>
 
-						<p:column headerText="Horário" style="width: 90px">
+						<p:column headerText="Horário"
+							style="width: 90px; text-align: center">
 							<h:outputText value="#{evento.horario}" />
 						</p:column>
 
+						<p:column headerText="Valor Entrada"
+							style="width: 100px; text-align: center">
+							<h:outputText value="#{evento.valor}">
+								<f:convertNumber type="currency" />
+							</h:outputText>
+						</p:column>
+
+						<p:column headerText="Descrição"
+							style="width: 200px; text-align: center">
+							<h:outputText value="#{evento.descricao}" />
+						</p:column>
+
 						<p:column headerText="Editar" style="width: 50px">
-							<p:button outcome="/CadastrarEvento" icon="ui-icon-pencil"
+							<p:button outcome="/CadastrarEvento" icon="fa fa-pencil"
 								title="Editar" style="width: 50px">
 								<f:param name="evento" value="#{evento.id}" />
 							</p:button>
 						</p:column>
 
 						<p:column headerText="Excluir" style="width: 50px">
-							<p:commandButton id="btn-excluir" icon="ui-icon-trash"
+							<p:commandButton id="btn-excluir" icon="fa fa-trash"
 								action="#{pesquisaEventoBean.remove}" update="form table"
 								process="@this" style="width: 50px">
 								<f:setPropertyActionListener

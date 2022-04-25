@@ -1,6 +1,7 @@
 package br.com.jsf.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Objects;
 
@@ -23,6 +24,8 @@ public class Evento implements Serializable {
 	private String local;
 	private Date data;
 	private String horario;
+	private BigDecimal valor;
+	private String descricao;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -79,6 +82,29 @@ public class Evento implements Serializable {
 		this.horario = horario;
 	}
 
+	@Column(nullable = false, length = 240)
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	@Column
+	public BigDecimal getValor() {
+		if (valor == null) {
+			valor = BigDecimal.ZERO;
+			return valor;
+		}else {
+			return valor;
+		}
+	}
+
+	public void setValor(BigDecimal valor) {
+		this.valor = valor;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -95,4 +121,5 @@ public class Evento implements Serializable {
 		Evento other = (Evento) obj;
 		return Objects.equals(id, other.id);
 	}
+
 }

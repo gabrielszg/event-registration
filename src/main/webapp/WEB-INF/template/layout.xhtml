@@ -10,7 +10,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title><ui:insert name="title">Sistema de Cadastro de Eventos</ui:insert></title>
 	<h:outputStylesheet library="css" name="styles.css" />
-	
+
 	<script type="text/javascript">
 		PrimeFaces.locales['pt'] = {
 			closeText : 'Fechar',
@@ -54,22 +54,22 @@
 	<h:form>
 		<p:menubar>
 			<p:submenu label="Eventos">
-				<p:menuitem value="Novo" url="/CadastrarEvento.xhtml" />
+				<p:menuitem value="Novo" icon="fa fa-save" url="/CadastrarEvento.xhtml" />
 				<p:separator />
-				<p:menuitem value="Lista" url="/ListaEventos.xhtml" target="_blank" />
+				<p:menuitem value="Lista" icon="fa fa-list" url="/ListaEventos.xhtml" target="_blank" />
 			</p:submenu>
 		</p:menubar>
 	</h:form>
-	
+
 	<div id="content">
 		<ui:insert name="body" />
 	</div>
-	
+
 	<p:separator style="margin-top: 150px" />
-	
+
 	<footer style="color: white">
-		Sistema de Cadastro de Eventos
-		<a href="https://tinyurl.com/yckx5cwh" target="_blank">www.google.com.br</a>
+		Sistema de Cadastro de Eventos <a href="https://tinyurl.com/yckx5cwh"
+			target="_blank">www.google.com.br</a>
 	</footer>
 </h:body>
 </html>
