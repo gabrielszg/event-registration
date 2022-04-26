@@ -21,18 +21,18 @@ import br.com.jsf.util.jpa.Transactional;
  * Classe responsavel pela comunicacao direta com o banco de dados MySql.
  * Atraves da implementacao dos metodos da especificacao JPA (Hibernate).
  */
-public class EventoRepository implements Serializable{
+public class EventoRepository implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Inject
 	private EntityManager manager;
-	
+
 	public Evento save(Evento evento) {
 		return manager.merge(evento);
 	}
-	
-	@SuppressWarnings({ "deprecation", "unchecked" })
+
+	@SuppressWarnings({ "unchecked", "deprecation" })
 	public List<Evento> find(EventoFilter filter) {
 		Session session = manager.unwrap(Session.class);
 		Criteria criteria = session.createCriteria(Evento.class);
@@ -47,7 +47,7 @@ public class EventoRepository implements Serializable{
 		
 		return criteria.list();
 	}
-	
+
 	@Transactional
 	public void delete(Evento evento) throws IOException {
 		evento = findById(evento.getId());
