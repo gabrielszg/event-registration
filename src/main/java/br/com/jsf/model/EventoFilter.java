@@ -2,6 +2,11 @@ package br.com.jsf.model;
 
 import java.io.Serializable;
 
+/** 
+ * Classe utilizada somente para filtrar eventos da lista
+ * por nome e local.
+ */
+
 public class EventoFilter implements Serializable{
 	
 	private static final long serialVersionUID = 1L;

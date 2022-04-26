@@ -11,6 +11,11 @@ import br.com.jsf.model.EventoFilter;
 import br.com.jsf.repository.EventoRepository;
 import br.com.jsf.util.jpa.Transactional;
 
+/**
+ * Classe intermediaria que faz a ponte entre o EventoRepository e as
+ * demais classes de controle.
+ * Aqui se aplicam as regras de negocio.
+ */
 public class EventoService implements Serializable {
 
 	private static final long serialVersionUID = 1L;

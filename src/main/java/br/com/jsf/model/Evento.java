@@ -13,6 +13,11 @@ import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+/** 
+ * Classe gerenciada pelo Hibernate.
+ * Representa a tabela evento no banco de dados.
+ */
+
 @Entity
 public class Evento implements Serializable {
 

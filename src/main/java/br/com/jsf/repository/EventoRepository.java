@@ -17,6 +17,10 @@ import br.com.jsf.model.Evento;
 import br.com.jsf.model.EventoFilter;
 import br.com.jsf.util.jpa.Transactional;
 
+/**
+ * Classe responsavel pela comunicacao direta com o banco de dados MySql.
+ * Atraves da implementacao dos metodos da especificacao JPA (Hibernate).
+ */
 public class EventoRepository implements Serializable{
 
 	private static final long serialVersionUID = 1L;

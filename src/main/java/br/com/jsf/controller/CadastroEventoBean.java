@@ -13,6 +13,12 @@ import br.com.jsf.model.Evento;
 import br.com.jsf.service.EventoService;
 import br.com.jsf.util.jsf.FacesUtil;
 
+/** 
+ * Classe de controle respnsavel pela comunicacao com a pagina de Cadastro de Evento.
+ * Gerenciada pelo CDI.
+ * Escopo de visualizacao. 
+ */
+
 @Named
 @ViewScoped
 public class CadastroEventoBean implements Serializable {
@@ -24,6 +30,10 @@ public class CadastroEventoBean implements Serializable {
 	@Inject
 	private EventoService service;
 	
+	/** 
+	 * Metodo que verifica se e um novo cadastro ou uma atualizacao dos dados do objeto.
+	 * Se o ID for nulo, cadastra novo evento, caso contrario atualiza o evento já cadastrado. 
+	 */
 	@PostConstruct
 	public void init() {
 		System.out.println("CadastroEventoBean.init()");
@@ -42,6 +52,10 @@ public class CadastroEventoBean implements Serializable {
 		}
 	}
 	
+	/** 
+	 * Metodo booleano para verifcar se o objeto esta vazio e
+	 * de acordo com seu estado, atualizar a mensagem na pagina de cadastro. 
+	 */
 	public boolean isNewEvent() {
 		return !(evento != null && evento.getId() != null);
 	}

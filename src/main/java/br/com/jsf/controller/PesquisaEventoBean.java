@@ -13,6 +13,12 @@ import br.com.jsf.model.EventoFilter;
 import br.com.jsf.service.EventoService;
 import br.com.jsf.util.jsf.FacesUtil;
 
+/** 
+ * Classe de controle respnsavel pela comunicacao com a pagina de Pesquisa de Evento.
+ * Gerenciada pelo CDI.
+ * Escopo de visualizacao. 
+ */
+
 @Named
 @ViewScoped
 public class PesquisaEventoBean implements Serializable {
@@ -30,6 +36,9 @@ public class PesquisaEventoBean implements Serializable {
 		this.filter = new EventoFilter();
 	}
 	
+	/** 
+	 * Metodo para busca no banco de dados. 
+	 */
 	public void find() {
 		
 		try {
@@ -39,6 +48,9 @@ public class PesquisaEventoBean implements Serializable {
 		eventos = service.findEvent(filter);
 	}
 	
+	/** 
+	 * Metodo que remove um evento da lista.
+	 */
 	public void remove() {
 		System.out.println("PesquisaEventoBean.remove()");
 		

@@ -1,0 +1,7 @@
+br.com.jsf.controller
+br.com.jsf.model
+br.com.jsf.repository
+br.com.jsf.service
+br.com.jsf.util.cdi
+br.com.jsf.util.jpa
+br.com.jsf.util.jsf
