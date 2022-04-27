@@ -80,3 +80,9 @@ h1 {
 	border-radius: 50px;
 	width: 250px;
 }
+
+.status {
+	display: grid;
+	justify-content: right;
+	margin-bottom: 10px;
+}

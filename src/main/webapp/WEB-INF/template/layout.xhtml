@@ -51,12 +51,23 @@
 		<h:graphicImage id="logo" library="images" name="placa-eventos.png"></h:graphicImage>
 	</div>
 
-	<h:form>
-		<p:menubar>
+	<p:ajaxStatus styleClass="status">
+		<f:facet name="start">
+			<p:graphicImage library="images" name="loading.gif" width="100px" />
+		</f:facet>
+		<f:facet name="complete">
+			<h:outputText value="" />
+		</f:facet>
+	</p:ajaxStatus>
+
+	<h:form style="padding: 50px">
+		<p:menubar style="padding-left: 10px" >
 			<p:submenu label="Eventos">
-				<p:menuitem value="Novo" icon="fa fa-save" url="/CadastrarEvento.xhtml" />
+				<p:menuitem value="Novo" icon="fa fa-save"
+					url="/CadastrarEvento.xhtml" />
 				<p:separator />
-				<p:menuitem value="Lista" icon="fa fa-list" url="/ListaEventos.xhtml" target="_blank" />
+				<p:menuitem value="Lista" icon="fa fa-list"
+					url="/ListaEventos.xhtml" target="_blank" />
 			</p:submenu>
 		</p:menubar>
 	</h:form>

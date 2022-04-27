@@ -12,16 +12,6 @@
 		<div class="formulario center">
 			<h:form id="form" style="text-align: left">
 
-				<p:ajaxStatus>
-					<f:facet name="start">
-						<p:graphicImage library="images" name="loading.gif"
-							style="width: 50px" />
-					</f:facet>
-					<f:facet name="complete">
-						<h:outputText value="" />
-					</f:facet>
-				</p:ajaxStatus>
-
 				<p:messages closable="true" />
 
 				<p:panelGrid columns="1" style="width: 100%">
@@ -43,8 +33,8 @@
 							action="#{pesquisaEventoBean.find}" update="@form"
 							icon="fa fa-search" iconPos="left" />
 
-						<p:button value="Voltar" icon="fa fa-arrow-left"
-							outcome="/CadastrarEvento" />
+						<p:button value="Novo" icon="fa fa-save"
+							outcome="/CadastrarEvento" target="_blank"/>
 					</f:facet>
 
 				</p:panelGrid>
