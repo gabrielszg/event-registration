@@ -17,7 +17,7 @@
 				<p:panelGrid columns="1" style="width: 100%">
 
 					<f:facet name="header">
-						<p:outputLabel value="Pesquisa de Eventos" style="font-size: 25px"/>
+						<p:outputLabel value="Pesquisa de Eventos" style="font-size: 25px" />
 					</f:facet>
 
 					<p:outputLabel value="Nome" for="nome" />
@@ -92,8 +92,8 @@
 						</p:column>
 
 						<p:column headerText="Editar" style="width: 50px">
-							<p:button outcome="/CadastrarEvento" icon="fa fa-pencil"
-								title="Editar" style="width: 50px">
+							<p:button outcome="/CadastrarEvento" target="_blank"
+								icon="fa fa-pencil" title="Editar" style="width: 50px">
 								<f:param name="evento" value="#{evento.id}" />
 							</p:button>
 						</p:column>
@@ -110,7 +110,8 @@
 						</p:column>
 					</p:dataTable>
 
-					<p:confirmDialog header="Exclusão de evento" showEffect="fade" hideEffect="fade"
+					<p:confirmDialog header="Exclusão de evento" showEffect="fade"
+						hideEffect="fade"
 						message="Tem certeza que deseja excluir o Evento #{pesquisaEventoBean.eventoSelecionado.nome} ?"
 						widgetVar="confirmacao" id="confirmacaoExclusao">
 						<p:button value="Não"

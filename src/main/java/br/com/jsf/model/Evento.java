@@ -11,6 +11,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -33,25 +37,35 @@ public class Evento implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@NotBlank
+	@Size(min = 2, max = 50)
 	@Column(nullable = false, length = 50)
 	private String nome;
 
+	@NotBlank
+	@Size(min = 2, max = 50)
 	@Column(nullable = false, length = 50)
 	private String organizacao;
 
+	@NotBlank
+	@Size(min = 2, max = 50)
 	@Column(nullable = false, length = 50)
 	private String local;
 
-	@Column(nullable = false)
+	@NotNull
 	@Temporal(TemporalType.DATE)
+	@Column(nullable = false)
 	private Date data;
 
+	@NotBlank
 	@Column(nullable = false)
 	private String horario;
 
-	@Column(nullable = true)
+	@Column(nullable = true, precision = 10, scale = 2)
 	private BigDecimal valor = new BigDecimal("0");
 
+	@NotBlank
+	@Size(min = 2, max = 240)
 	@Column(nullable = false, length = 240)
 	private String descricao;
 
