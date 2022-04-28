@@ -3,7 +3,6 @@ package br.com.jsf.model;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,118 +12,47 @@ import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/** 
- * Classe gerenciada pelo Hibernate.
- * Representa a tabela evento no banco de dados.
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Classe gerenciada pelo Hibernate. Representa a tabela evento no banco de
+ * dados.
  */
 
 @Entity
+@Getter
+@Setter
+@EqualsAndHashCode
 public class Evento implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private Long id;
-	private String nome;
-	private String organizacao;
-	private String local;
-	private Date data;
-	private String horario;
-	private BigDecimal valor;
-	private String descricao;
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
+	private Long id;
 
 	@Column(nullable = false, length = 50)
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+	private String nome;
 
 	@Column(nullable = false, length = 50)
-	public String getOrganizacao() {
-		return organizacao;
-	}
-
-	public void setOrganizacao(String organizacao) {
-		this.organizacao = organizacao;
-	}
+	private String organizacao;
 
 	@Column(nullable = false, length = 50)
-	public String getLocal() {
-		return local;
-	}
-
-	public void setLocal(String local) {
-		this.local = local;
-	}
+	private String local;
 
 	@Column(nullable = false)
 	@Temporal(TemporalType.DATE)
-	public Date getData() {
-		return data;
-	}
+	private Date data;
 
-	public void setData(Date data) {
-		this.data = data;
-	}
+	@Column(nullable = false)
+	private String horario;
 
-	public String getHorario() {
-		return horario;
-	}
-
-	public void setHorario(String horario) {
-		this.horario = horario;
-	}
+	@Column(nullable = true)
+	private BigDecimal valor = new BigDecimal("0");
 
 	@Column(nullable = false, length = 240)
-	public String getDescricao() {
-		return descricao;
-	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-
-	@Column
-	public BigDecimal getValor() {
-		if (valor == null) {
-			valor = BigDecimal.ZERO;
-			return valor;
-		}else {
-			return valor;
-		}
-	}
-
-	public void setValor(BigDecimal valor) {
-		this.valor = valor;
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(id);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Evento other = (Evento) obj;
-		return Objects.equals(id, other.id);
-	}
+	private String descricao;
 
 }

@@ -12,9 +12,8 @@ import br.com.jsf.repository.EventoRepository;
 import br.com.jsf.util.jpa.Transactional;
 
 /**
- * Classe intermediaria que faz a ponte entre o EventoRepository e as
- * demais classes de controle.
- * Aqui se aplicam as regras de negocio.
+ * Classe intermediaria que faz a ponte entre o EventoRepository e as demais
+ * classes de controle. Aqui se aplicam as regras de negocio.
  */
 public class EventoService implements Serializable {
 
@@ -36,7 +35,7 @@ public class EventoService implements Serializable {
 	public void removeEvent(Evento evento) throws IOException {
 		repository.delete(evento);
 	}
-	
+
 	public Evento findById(Long id) {
 		return repository.findById(id);
 	}
