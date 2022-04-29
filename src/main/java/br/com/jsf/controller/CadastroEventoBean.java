@@ -69,12 +69,14 @@ public class CadastroEventoBean implements Serializable {
 
 		if (evento.getId() == null) {
 			this.evento = service.saveEvent(this.evento);
+
 			FacesUtil.addInfoMessage("Evento Cadastrado com sucesso!");
 		} else if (service.findById(evento.getId()) != null) {
 			this.evento = service.saveEvent(this.evento);
+
 			FacesUtil.addInfoMessage("Evento " + evento.getNome() + " Atualizado com sucesso!");
 		} else {
-			FacesUtil.addErrorMessage("Evento " + evento.getNome() + " Não pode ser atualizado, pois não existe!");
+			FacesUtil.redirecionarPagina("CadastrarEvento.xhtml");
 		}
 	}
 }
