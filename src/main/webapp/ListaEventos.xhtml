@@ -31,7 +31,8 @@
 					<f:facet name="footer">
 						<p:commandButton id="btn" value="Pesquisar"
 							action="#{pesquisaEventoBean.find}" update="@form"
-							icon="fa fa-search" iconPos="left" />
+							icon="fa fa-search" iconPos="left">
+						</p:commandButton>
 
 						<p:button value="Novo" icon="fa fa-save"
 							outcome="/CadastrarEvento" target="_blank" />
@@ -43,10 +44,15 @@
 				<p:spacer />
 
 				<h:panelGroup styleClass="center">
+
 					<p:dataTable value="#{pesquisaEventoBean.eventos}" var="evento"
 						id="table" emptyMessage="Não há eventos cadastrados."
 						paginator="true" rows="10" paginatorAlwaysVisible="false"
 						paginatorPosition="bottom">
+
+						<f:facet name="header">
+							<p:outputLabel value="Lista de Eventos" />
+						</f:facet>
 
 						<p:column headerText="Id" style="width: 50px; text-align: center">
 							<h:outputText value="#{evento.id}" />
@@ -81,7 +87,8 @@
 
 						<p:column headerText="Valor Entrada"
 							style="width: 100px; text-align: center">
-							<h:outputText value="#{evento.valor}">
+							<h:outputText
+								value="#{evento.valor gt 0 ? evento.valor : 'Gratuito'}">
 								<f:convertNumber type="currency" />
 							</h:outputText>
 						</p:column>

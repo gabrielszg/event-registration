@@ -72,4 +72,5 @@ public class PesquisaEventoBean implements Serializable {
 			e.printStackTrace();
 		}
 	}
+
 }

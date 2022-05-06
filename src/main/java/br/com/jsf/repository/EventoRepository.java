@@ -2,6 +2,7 @@ package br.com.jsf.repository;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -36,11 +37,11 @@ public class EventoRepository implements Serializable {
 	public List<Evento> find(EventoFilter filter) {
 		Session session = manager.unwrap(Session.class);
 		Criteria criteria = session.createCriteria(Evento.class);
-		
+
 		if (StringUtils.isNotBlank(filter.getNome())) {
 			criteria.add(Restrictions.ilike("nome", filter.getNome(), MatchMode.ANYWHERE));
 		}
-		
+
 		if (StringUtils.isNotBlank(filter.getLocal())) {
 			criteria.add(Restrictions.ilike("local", filter.getLocal(), MatchMode.ANYWHERE));
 		}
@@ -58,4 +59,5 @@ public class EventoRepository implements Serializable {
 	public Evento findById(Long id) {
 		return manager.find(Evento.class, id);
 	}
+
 }

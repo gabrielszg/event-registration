@@ -63,7 +63,7 @@ public class Evento implements Serializable {
 
 	@Column(nullable = true, precision = 10, scale = 2)
 	private BigDecimal valor = new BigDecimal("0");
-
+	
 	@NotBlank
 	@Size(min = 2, max = 240)
 	@Column(nullable = false, length = 240)
