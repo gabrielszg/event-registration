@@ -52,9 +52,18 @@
 
 						<f:facet name="header">
 							<p:outputLabel value="Lista de Eventos" />
+
+							<div style="text-align: right; background: none">
+								<p:commandLink ajax="false">
+									<p:graphicImage library="images" name="icon-pdf.png" width="35"
+										alt="pdf" />
+									<p:dataExporter type="pdf" target="table" fileName="Eventos" />
+								</p:commandLink>
+							</div>
 						</f:facet>
 
-						<p:column headerText="Id" style="width: 50px; text-align: center">
+						<p:column headerText="Id" style="width: 50px; text-align: center"
+							exportable="false">
 							<h:outputText value="#{evento.id}" />
 						</p:column>
 
@@ -98,14 +107,16 @@
 							<h:outputText value="#{evento.descricao}" />
 						</p:column>
 
-						<p:column headerText="Editar" style="width: 50px">
+						<p:column headerText="Editar" style="width: 50px"
+							exportable="false">
 							<p:button outcome="/CadastrarEvento" target="_blank"
 								icon="fa fa-pencil" title="Editar" style="width: 50px">
 								<f:param name="evento" value="#{evento.id}" />
 							</p:button>
 						</p:column>
 
-						<p:column headerText="Excluir" style="width: 50px">
+						<p:column headerText="Excluir" style="width: 50px"
+							exportable="false">
 							<p:commandButton id="btn-excluir" icon="fa fa-trash"
 								title="Excluir" oncomplete="PF('confirmacao').show()"
 								update=":form:confirmacaoExclusao" process="@this"
@@ -129,6 +140,7 @@
 							update="form table" id="yesButton" />
 					</p:confirmDialog>
 				</h:panelGroup>
+
 			</h:form>
 		</div>
 	</ui:define>
