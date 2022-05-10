@@ -52,13 +52,31 @@
 
 						<f:facet name="header">
 							<p:outputLabel value="Lista de Eventos" />
-
-							<div style="text-align: right; background: none">
-								<p:commandLink ajax="false">
-									<p:graphicImage library="images" name="icon-pdf.png" width="35"
-										alt="pdf" />
+							
+							<div style="text-align: right">
+								<h:commandLink ajax="false" target="_blank">
+									<p:graphicImage library="images" name="icon-pdf.png" width="30"
+										title="PDF" />
 									<p:dataExporter type="pdf" target="table" fileName="Eventos" />
-								</p:commandLink>
+								</h:commandLink>
+
+								<h:commandLink ajax="false" target="_blank">
+									<p:graphicImage library="images" name="icon-excel.png"
+										width="30" title="Excel" />
+									<p:dataExporter type="xls" target="table" fileName="Eventos" />
+								</h:commandLink>
+
+								<h:commandLink ajax="false" target="_blank">
+									<p:graphicImage library="images" name="icon-csv.png" width="30" title="CSV" />
+									
+									<p:dataExporter type="csv" target="table" fileName="Eventos" encoding="UTF-8"/>
+								</h:commandLink>
+								
+								<h:commandLink ajax="false" target="_blank">
+									<p:graphicImage library="images" name="icon-xml.png" width="30" title="XML" />
+									
+									<p:dataExporter type="xml" target="table" fileName="Eventos" />
+								</h:commandLink>
 							</div>
 						</f:facet>
 
