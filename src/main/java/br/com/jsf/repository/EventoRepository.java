@@ -2,7 +2,6 @@ package br.com.jsf.repository;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -44,6 +43,10 @@ public class EventoRepository implements Serializable {
 
 		if (StringUtils.isNotBlank(filter.getLocal())) {
 			criteria.add(Restrictions.ilike("local", filter.getLocal(), MatchMode.ANYWHERE));
+		}
+		
+		if (filter.getData() != null) {
+			criteria.add(Restrictions.eq("data", filter.getData()));
 		}
 		
 		return criteria.list();

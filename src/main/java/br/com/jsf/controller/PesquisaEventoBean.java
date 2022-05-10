@@ -2,6 +2,7 @@ package br.com.jsf.controller;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.faces.view.ViewScoped;
@@ -26,6 +27,9 @@ public class PesquisaEventoBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	@Getter
+	private Date currentDate =  new Date();
+	
 	@Getter
 	@Setter
 	private Evento eventoSelecionado;
@@ -72,5 +76,4 @@ public class PesquisaEventoBean implements Serializable {
 			e.printStackTrace();
 		}
 	}
-
 }

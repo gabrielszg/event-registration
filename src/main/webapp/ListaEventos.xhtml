@@ -19,7 +19,7 @@
 					<f:facet name="header">
 						<p:outputLabel value="Pesquisa de Eventos" style="font-size: 25px" />
 					</f:facet>
-
+					
 					<p:outputLabel value="Nome" for="nome" />
 					<p:inputText id="nome" value="#{pesquisaEventoBean.filter.nome}"
 						style="width: 50%" />
@@ -28,6 +28,11 @@
 					<p:inputText id="local" value="#{pesquisaEventoBean.filter.local}"
 						style="width: 50%" />
 
+					<p:outputLabel value="Data" for="data" />
+						<p:calendar id="data" value="#{pesquisaEventoBean.filter.data}"
+							locale="pt" mask="99/99/9999" navigator="true"
+							pattern="dd/MM/yyyy" pages="2" showButtonPanel="true" />
+							
 					<f:facet name="footer">
 						<p:commandButton id="btn" value="Pesquisar"
 							action="#{pesquisaEventoBean.find}" update="@form"
@@ -52,7 +57,7 @@
 
 						<f:facet name="header">
 							<p:outputLabel value="Lista de Eventos" />
-							
+
 							<div style="text-align: right">
 								<h:commandLink ajax="false" target="_blank">
 									<p:graphicImage library="images" name="icon-pdf.png" width="30"
@@ -63,18 +68,22 @@
 								<h:commandLink ajax="false" target="_blank">
 									<p:graphicImage library="images" name="icon-excel.png"
 										width="30" title="Excel" />
-									<p:dataExporter type="xls" target="table" fileName="Eventos" />
+									<p:dataExporter type="xls" target="table" fileName="Eventos"
+										encoding="iso-8859-1" />
 								</h:commandLink>
 
 								<h:commandLink ajax="false" target="_blank">
-									<p:graphicImage library="images" name="icon-csv.png" width="30" title="CSV" />
-									
-									<p:dataExporter type="csv" target="table" fileName="Eventos" encoding="UTF-8"/>
+									<p:graphicImage library="images" name="icon-csv.png" width="30"
+										title="CSV" />
+
+									<p:dataExporter type="csv" target="table" fileName="Eventos"
+										encoding="iso-8859-1" />
 								</h:commandLink>
-								
+
 								<h:commandLink ajax="false" target="_blank">
-									<p:graphicImage library="images" name="icon-xml.png" width="30" title="XML" />
-									
+									<p:graphicImage library="images" name="icon-xml.png" width="30"
+										title="XML" />
+
 									<p:dataExporter type="xml" target="table" fileName="Eventos" />
 								</h:commandLink>
 							</div>
@@ -102,7 +111,7 @@
 
 						<p:column headerText="Data"
 							style="width: 110px; text-align: center">
-							<h:outputText value="#{evento.data}">
+							<h:outputText value="#{evento.data gt pesquisaEventoBean.currentDate ? evento.data : 'já realizado'}">
 								<f:convertDateTime pattern="dd/MM/yyyy" />
 							</h:outputText>
 						</p:column>
