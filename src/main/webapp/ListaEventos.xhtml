@@ -19,7 +19,7 @@
 					<f:facet name="header">
 						<p:outputLabel value="Pesquisa de Eventos" style="font-size: 25px" />
 					</f:facet>
-					
+
 					<p:outputLabel value="Nome" for="nome" />
 					<p:inputText id="nome" value="#{pesquisaEventoBean.filter.nome}"
 						style="width: 50%" />
@@ -29,10 +29,10 @@
 						style="width: 50%" />
 
 					<p:outputLabel value="Data" for="data" />
-						<p:calendar id="data" value="#{pesquisaEventoBean.filter.data}"
-							locale="pt" mask="99/99/9999" navigator="true"
-							pattern="dd/MM/yyyy" pages="2" showButtonPanel="true" />
-							
+					<p:calendar id="data" value="#{pesquisaEventoBean.filter.data}"
+						locale="pt" mask="99/99/9999" navigator="true"
+						pattern="dd/MM/yyyy" pages="2" showButtonPanel="true" />
+
 					<f:facet name="footer">
 						<p:commandButton id="btn" value="Pesquisar"
 							action="#{pesquisaEventoBean.find}" update="@form"
@@ -62,7 +62,8 @@
 								<h:commandLink ajax="false" target="_blank">
 									<p:graphicImage library="images" name="icon-pdf.png" width="30"
 										title="PDF" />
-									<p:dataExporter type="pdf" target="table" fileName="Eventos" />
+									<p:dataExporter type="pdf" target="table" fileName="Eventos"
+										encoding="iso-8859-1" />
 								</h:commandLink>
 
 								<h:commandLink ajax="false" target="_blank">
@@ -111,7 +112,8 @@
 
 						<p:column headerText="Data"
 							style="width: 110px; text-align: center">
-							<h:outputText value="#{evento.data gt pesquisaEventoBean.currentDate ? evento.data : 'já realizado'}">
+							<h:outputText
+								value="#{evento.data gt pesquisaEventoBean.currentDate ? evento.data : 'já realizado'}">
 								<f:convertDateTime pattern="dd/MM/yyyy" />
 							</h:outputText>
 						</p:column>
@@ -137,7 +139,8 @@
 						<p:column headerText="Editar" style="width: 50px"
 							exportable="false">
 							<p:button outcome="/CadastrarEvento" target="_blank"
-								icon="fa fa-pencil" title="Editar" style="width: 50px">
+								icon="fa fa-pencil" title="Editar" style="width: 50px"
+								disabled="#{evento.data lt pesquisaEventoBean.currentDate}">
 								<f:param name="evento" value="#{evento.id}" />
 							</p:button>
 						</p:column>

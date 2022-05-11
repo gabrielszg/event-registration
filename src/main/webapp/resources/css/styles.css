@@ -99,3 +99,12 @@ h1 {
 .ui-widget-header a {
 	margin-right: 10px;
 }
+
+.ui-clock {
+    border: none;
+    font-style: italic;
+    display: flex;
+    flex-direction: row-reverse;
+    background: none;
+    width: 96%;
+}

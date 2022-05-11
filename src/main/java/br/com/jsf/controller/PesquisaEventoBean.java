@@ -2,6 +2,7 @@ package br.com.jsf.controller;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 
@@ -29,6 +30,9 @@ public class PesquisaEventoBean implements Serializable {
 
 	@Getter
 	private Date currentDate =  new Date();
+	
+	@Getter
+	private LocalTime currentTime = LocalTime.now().withNano(0);
 	
 	@Getter
 	@Setter
