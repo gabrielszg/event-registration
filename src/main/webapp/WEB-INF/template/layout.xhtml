@@ -48,7 +48,7 @@
 
 <h:body>
 	<div id="header" class="center">
-		<h:graphicImage id="logo" library="images" name="placa-eventos.png"></h:graphicImage>
+		<h:graphicImage id="logo" library="images" name="logo.png"></h:graphicImage>
 	</div>
 	
 	<p:clock mode="server" value="#{pesquisaEventoBean.currentDate}" pattern="HH:mm:ss dd/MM/yyyy" />
@@ -63,7 +63,7 @@
 	</p:ajaxStatus>
 
 	<h:form style="padding: 50px">
-		<p:menubar style="padding-left: 10px" >
+		<p:menubar style="padding-left: 10px">
 			<p:submenu label="Eventos">
 				<p:menuitem value="Novo" icon="fa fa-save"
 					outcome="CadastrarEvento" />
