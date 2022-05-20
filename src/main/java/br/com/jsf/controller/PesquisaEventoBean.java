@@ -1,14 +1,22 @@
 package br.com.jsf.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.ServletContext;
+
+import com.lowagie.text.BadElementException;
+import com.lowagie.text.Document;
+import com.lowagie.text.DocumentException;
+import com.lowagie.text.Image;
 
 import br.com.jsf.model.Evento;
 import br.com.jsf.model.EventoFilter;
@@ -29,11 +37,11 @@ public class PesquisaEventoBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Getter
-	private Date currentDate =  new Date();
-	
+	private Date currentDate = new Date();
+
 	@Getter
 	private LocalTime currentTime = LocalTime.now().withNano(0);
-	
+
 	@Getter
 	@Setter
 	private Evento eventoSelecionado;
@@ -80,4 +88,16 @@ public class PesquisaEventoBean implements Serializable {
 			e.printStackTrace();
 		}
 	}
+
+	public void postProcessPDF(Object document) throws IOException, BadElementException, DocumentException {
+		Document pdf = (Document) document;
+		ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext()
+				.getContext();
+
+		String logo = servletContext.getRealPath("") + File.separator + "resources" + File.separator + "images"
+				+ File.separator + "eventos.png";
+		pdf.add(Image.getInstance(logo));
+
+	}
+	
 }

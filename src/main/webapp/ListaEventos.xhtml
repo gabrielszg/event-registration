@@ -63,7 +63,7 @@
 									<p:graphicImage library="images" name="icon-pdf.png" width="30"
 										title="PDF" />
 									<p:dataExporter type="pdf" target="table" fileName="Eventos"
-										encoding="iso-8859-1" />
+										encoding="iso-8859-1" postProcessor="#{pesquisaEventoBean.postProcessPDF}" />
 								</h:commandLink>
 
 								<h:commandLink ajax="false" target="_blank">

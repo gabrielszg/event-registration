@@ -76,6 +76,7 @@ public class CadastroEventoBean implements Serializable {
 
 			FacesUtil.addInfoMessage("Evento " + evento.getNome() + " Atualizado com sucesso!");
 		} else {
+
 			FacesUtil.redirecionarPagina("CadastrarEvento.xhtml");
 		}
 	}
