@@ -29,7 +29,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode
-public class Evento implements Serializable {
+public class Evento implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
@@ -63,7 +63,7 @@ public class Evento implements Serializable {
 
 	@Column(nullable = true, precision = 10, scale = 2)
 	private BigDecimal valor = new BigDecimal("0");
-	
+
 	@NotBlank
 	@Size(min = 2, max = 240)
 	@Column(nullable = false, length = 240)

@@ -2,16 +2,19 @@ package br.com.jsf.repository;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 
 import org.apache.commons.lang3.StringUtils;
-import org.hibernate.Criteria;
-import org.hibernate.Session;
-import org.hibernate.criterion.MatchMode;
-import org.hibernate.criterion.Restrictions;
 
 import br.com.jsf.model.Evento;
 import br.com.jsf.model.EventoFilter;
@@ -32,24 +35,38 @@ public class EventoRepository implements Serializable {
 		return manager.merge(evento);
 	}
 
-	@SuppressWarnings({ "unchecked", "deprecation" })
 	public List<Evento> find(EventoFilter filter) {
-		Session session = manager.unwrap(Session.class);
-		Criteria criteria = session.createCriteria(Evento.class);
+		List<Evento> result = null;
 
-		if (StringUtils.isNotBlank(filter.getNome())) {
-			criteria.add(Restrictions.ilike("nome", filter.getNome(), MatchMode.ANYWHERE));
-		}
+		try {
 
-		if (StringUtils.isNotBlank(filter.getLocal())) {
-			criteria.add(Restrictions.ilike("local", filter.getLocal(), MatchMode.ANYWHERE));
+			CriteriaBuilder criteriaBuilder = manager.getCriteriaBuilder();
+			CriteriaQuery<Evento> criteriaQuery = criteriaBuilder.createQuery(Evento.class);
+
+			Root<Evento> evento = criteriaQuery.from(Evento.class);
+			List<Predicate> predicates = new ArrayList<>();
+
+			if (StringUtils.isNotBlank(filter.getNome())) {
+				predicates.add(criteriaBuilder.like(evento.get("nome").as(String.class), "%" + filter.getNome() + "%"));
+			}
+
+			if (StringUtils.isNotBlank(filter.getLocal())) {
+				predicates.add(criteriaBuilder.like(evento.get("local").as(String.class), "%" + filter.getLocal() + "%"));
+			}
+
+			if (filter.getData() != null) {
+				predicates.add(criteriaBuilder.equal(evento.get("data").as(Date.class), filter.getData()));
+			}
+
+			criteriaQuery.where(predicates.toArray(new Predicate[] {}));
+
+			TypedQuery<Evento> typedQuery = manager.createQuery(criteriaQuery);
+			result = typedQuery.getResultList();
+
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		
-		if (filter.getData() != null) {
-			criteria.add(Restrictions.eq("data", filter.getData()));
-		}
-		
-		return criteria.list();
+		return result;
 	}
 
 	@Transactional
