@@ -9,9 +9,21 @@
 
 	<ui:define name="body">
 
+		<div style="position: absolute">
+			<p:menu toggleable="true">
+				<p:submenu label="Menu">
+					<p:menuitem value="Novo" icon="fa fa-save"
+						outcome="CadastrarEvento" />
+					<p:separator />
+					<p:menuitem value="Lista" icon="fa fa-list" outcome="ListaEventos"
+						target="_blank" />
+				</p:submenu>
+			</p:menu>
+		</div>
+
 		<div class="formulario center">
 			<h:form id="form">
-
+			
 				<p:messages closable="true" />
 
 				<p:panelGrid columns="1">
